@@ -15,6 +15,7 @@
 # include	<stdlib.h>
 # include	<unistd.h>
 # include	<errno.h>
+# include	<stdio.h>
 # define MAX_INT 2147483647
 # define STACKA 1
 # define STACKB 2
@@ -52,12 +53,17 @@ typedef struct s_chunk
 	t_chunk_item	item;
 	t_chunk_sizes	sizes;
 }t_chunk;
+
+enum e_bool{
+	FALSE,
+	TRUE
+};
 int				parse_nbr(char *s_nbr, t_stack **stack);
 void			ft_swap(t_stack **a, t_stack **b, int mode);
 void			ft_push(t_stack **a, t_stack **b, int mode);
 void			ft_rotate(t_stack **a, t_stack **b, int mode);
 void			ft_reverse_rotate(t_stack **a, t_stack **b, int mode);
-void			print_stack(t_stack **stack);
+void			print_stack(t_stack *node);
 void			ft_freestack(t_stack **stack);
 int				get_stack_len(t_stack *stack);
 void			order3(t_stack **stack, int mode);
@@ -72,4 +78,5 @@ void			orderbydefault(t_stack **a, t_stack **b);
 int				ft_isspace(char c);
 int				ft_isdigit(int c);
 int				ft_atoi(const char *str);
+void			longest_rally_orderer(t_stack **a, t_stack **b);
 #endif

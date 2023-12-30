@@ -18,6 +18,7 @@ SRC		= main.c		\
 		orderchunks2.c	\
 		parser.c		\
 		parserutils.c	\
+		longest_rally.c	\
 		utils.c
 
 NAME	= push_swap
@@ -34,15 +35,17 @@ OBJS	= $(SRC:.c=.o)
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS) 
+$(NAME):	$(OBJS)
 			$(CC) $(FLAGS) -o $(NAME) $(OBJS)
-			
+
 clean:
-		$(RM) $(OBJS) 
+		$(RM) $(OBJS)
 
 fclean:	clean
 		$(RM) $(NAME)
 
 re:		fclean all
+
+.SILENT: all ${NAME} ${OBJS} clean fclean re
 
 .PHONY:	all clean fclean re
