@@ -1,35 +1,11 @@
 #include "push_swap.h"
 
-typedef struct s_rally_utils
+t_stack *next_node(const t_stack *first, const t_stack *current)
 {
-	int	min;
-	int	max;
-	int rally;
-}t_rally_utils;
-
-static void init_rally(t_stack **node, t_rally_utils *u, const t_stack *first, const t_stack *current){
-	u->rally = 0;
-	u->min = current->order;
-	u->max = current->order;
 	if (current->next != NULL)
-		*node = current->next;
+		return current->next;
 	else
-		*node = (t_stack *)first;
-}
-
-int is_rally_item(const t_stack	*n, t_rally_utils *u)
-{
-	if (u->max > n->order && n->order > u->min)
-		u->max = n->order;
-	else if (n->order > u->max)
-	{
-		if (u->max > u->min)
-			u->min = u->max;
-		u->max = n->order;
-	}
-	else
-		return FALSE;
-	return TRUE;
+		return (t_stack *)first;
 }
 
 /**
@@ -42,47 +18,48 @@ int is_rally_item(const t_stack	*n, t_rally_utils *u)
 */
 static size_t rally_ordered(const t_stack *first, const t_stack *current)
 {
-	t_stack			*n;
-	t_rally_utils	u;
+	t_stack	*n;
+	size_t	rally;
+	int		pivot;
 
-	init_rally(&n, &u, first, current);
+	rally = 0;
+	pivot = current->order;
+	n = next_node(first, current);
 	while (n != current)
 	{
-		if (is_rally_item(n, &u) == TRUE)
-			u.rally++;
-		n = n->next;
-		if (n == NULL)
-			n = (t_stack *)first;
+		if (n->order > pivot)
+		{
+			pivot = n->order;
+			rally++;
+		}
+		n = next_node(first, n);
 	}
-	return u.rally;
+	return rally;
 }
 
 size_t *get_rally_items(const t_stack *first, const t_stack *current, const int	max_rally){
-	size_t			*rally_items;
-	int				i;
-	t_stack			*n;
-	t_rally_utils	u;
+	size_t	*rally_items;
+	int		i;
+	t_stack	*n;
+	int		pivot;
 
-	init_rally(&n, &u, first, current);
+	pivot = current->order;
 	rally_items = malloc(max_rally * sizeof(int));
 	if (rally_items == NULL)
 		return NULL;
 	i = 0;
 	rally_items[i] = current->order;
 	rally_items[max_rally] = 0;
+	n = next_node(first, current);
 	while (n != current)
 	{
-		if (is_rally_item(n, &u) == TRUE)
+		if (n->order > pivot)
+		{
+			pivot = n->order;
 			rally_items[++i] = n->order;
-		n = n->next;
-		if (n == NULL)
-			n = (t_stack *)first;
+		}
+		n = next_node(first, n);
 	}
-	i = 0;
-	while (rally_items[i] != 0)
-	// while (i++ < (int)max_rally)
-		printf("%ld ",rally_items[i++]);
-	printf("\n");
 	return rally_items;
 }
 
@@ -119,9 +96,7 @@ size_t get_rally_length(size_t *rally_items){
 void leave_rally(t_stack **a, t_stack **b, size_t *rally_items){
 	const size_t	len_rally = get_rally_length(rally_items);
 	int				i;
-	t_stack			*last_rotated;
 
-	last_rotated = NULL;
 	while (get_stack_len(*a) != (int)len_rally)
 	{
 		i = 0;
@@ -129,26 +104,8 @@ void leave_rally(t_stack **a, t_stack **b, size_t *rally_items){
 			i++;
 		if (rally_items[i] == 0)
 			ft_push(a, b, STACKB);
-		else {
-			i = 0;
-			while (rally_items[i] != 0 && (*a)->next->order != (int)rally_items[i])
-				i++;
-			if (rally_items[i] != 0 && (*a)->next->order < (*a)->order)
-				ft_swap(a, b, STACKA);
-			else
-			{
-				if (last_rotated != NULL && last_rotated->order > (*a)->order)
-				{
-					last_rotated = NULL;
-					ft_reverse_rotate(a, b, STACKA);
-				}
-				else
-				{
-					last_rotated = (*a);
-					ft_rotate(a, b, STACKA);
-				}
-			}
-		}
+		else
+			ft_rotate(a, b, STACKA);
 	}
 }
 
