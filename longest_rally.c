@@ -80,7 +80,7 @@ size_t *get_longest_rally_orderer(const t_stack *first){
 		}
 		current = current->next;
 	}
-	printf("%d is the longest rally with %ld\n", max_rally_node->order, max_rally);
+	// printf("%d is the longest rally with %ld\n", max_rally_node->order, max_rally);
 	return get_rally_items(first, max_rally_node, max_rally + 1);
 }
 
