@@ -26,7 +26,11 @@ NAME	= push_swap
 CC 		= gcc
 RM 		= rm -f
 
-FLAGS	= -Wall -Wextra -Werror
+FLAGS	= -Wall -Wextra -Werror $(SANITIZE)
+
+# sanitize
+# SANITIZE =
+SANITIZE = -fsanitize=address -g
 
 OBJS	= $(SRC:.c=.o)
 
