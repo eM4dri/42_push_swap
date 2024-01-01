@@ -6,7 +6,7 @@
 #    By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2024/01/01 20:30:23 by emadriga         ###   ########.fr        #
+#    Updated: 2024/01/01 22:42:15 by emadriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC		= main.c		\
 		parser.c		\
 		parserutils.c	\
 		longest_rally.c	\
+		less_moves_to_order.c	\
 		utils.c
 
 NAME	= push_swap

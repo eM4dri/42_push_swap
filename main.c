@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 17:49:07 by emadriga          #+#    #+#             */
-/*   Updated: 2021/09/11 13:55:33 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/01 23:11:53 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void default_order(t_stack **stack_a, t_stack **stack_b){
 	b.s = stack_b;
 	longest_rally_orderer(&a, &b); //! handle malloc error
 	print_stack(*b.s);
-	printf("a.len %ld\tb.len %ld\n\n",a.len, b.len);
-	// less_moves_to_order(&a, &b);
+	// printf("a.len %ld\tb.len %ld\n\n",a.len, b.len);
+	less_moves_to_order(&a, &b);
 }
 // = malloc(max_rally * sizeof(int));
 // typedef struct s_stack_extended

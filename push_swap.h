@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 12:04:17 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/01 20:31:08 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/01 22:34:47 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ typedef struct s_stack
 	int				nbr;
 	int				order;
 	int				pos;
+	__u_int			m2fa;
+	__u_int			m2la;
+	__u_int			m2fb;
+	__u_int			m2lb;
+	__u_int			total_moves;
+	short			moves_mode;
 	struct s_stack	*next;
 }t_stack;
 typedef struct s_stack_extended
@@ -59,10 +65,6 @@ typedef struct s_chunk
 	t_chunk_sizes	sizes;
 }t_chunk;
 
-enum e_bool{
-	FALSE,
-	TRUE
-};
 int				parse_nbr(char *s_nbr, t_stack **stack);
 void			ft_swap(t_stack **a, t_stack **b, int mode);
 void			ft_push(t_stack **a, t_stack **b, int mode);
@@ -84,5 +86,7 @@ void			orderbydefault(t_stack **a, t_stack **b);
 int				ft_isspace(char c);
 int				ft_isdigit(int c);
 int				ft_atoi(const char *str);
-void 			longest_rally_orderer(t_stack_extended *a, t_stack_extended *b);
+void			longest_rally_orderer(t_stack_extended *a, t_stack_extended *b);
+void			less_moves_to_order(t_stack_extended *a, t_stack_extended *b);
+
 #endif
