@@ -35,6 +35,11 @@ typedef struct s_stack
 	int				pos;
 	struct s_stack	*next;
 }t_stack;
+typedef struct s_stack_extended
+{
+	t_stack	**s;
+	size_t	len;
+}t_stack_extended;
 typedef struct s_chunk_item
 {
 	int	nbr;
@@ -78,5 +83,5 @@ void			orderbydefault(t_stack **a, t_stack **b);
 int				ft_isspace(char c);
 int				ft_isdigit(int c);
 int				ft_atoi(const char *str);
-void			longest_rally_orderer(t_stack **a, t_stack **b);
+void 			longest_rally_orderer(t_stack_extended *a, t_stack_extended *b);
 #endif

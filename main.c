@@ -12,6 +12,18 @@
 
 #include "push_swap.h"
 
+void			print_stack(t_stack *node){
+
+	while (node != NULL)
+	{
+		printf("%d ", node->order);
+		// printf("%d\t%d\t%d\n", node->pos, node->nbr, node->order);
+		node = node->next;
+	}
+	printf("\n");
+
+}
+
 static int	isordered(t_stack *stack)
 {
 	int	i;
@@ -27,6 +39,25 @@ static int	isordered(t_stack *stack)
 	return (1);
 }
 
+void default_order(t_stack **stack_a, t_stack **stack_b){
+	t_stack_extended	a;
+	t_stack_extended	b;
+
+	a.s = stack_a;
+	b.s = stack_b;
+	longest_rally_orderer(&a, &b); //! handle malloc error
+	print_stack(*a.s);
+	// free(a.s);
+	// free(b.s);
+	// print_stack(*a.s);
+}
+// = malloc(max_rally * sizeof(int));
+// typedef struct s_stack_extended
+// {
+// 	t_stack	**s;
+// 	size_t	len;
+// }t_stack_extended;
+
 static void	do_rotate(t_stack **stack)
 {
 	int		stack_len;
@@ -40,10 +71,9 @@ static void	do_rotate(t_stack **stack)
 		order3(stack, STACKA);
 	else if (stack_len <= 5)
 		order5(stack, &aux);
-	else if (stack_len == 100 || stack_len == 500)
-		order_with_chunks(stack, &aux, 5);
 	else
-		orderbydefault(stack, &aux);
+		default_order(stack, &aux);
+	ft_freestack(&aux);
 }
 
 int	main(int argc, char **argv)
