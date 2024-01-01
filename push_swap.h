@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 12:04:17 by emadriga          #+#    #+#             */
-/*   Updated: 2021/09/04 17:00:14 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/01 20:31:08 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ enum e_bool{
 int				parse_nbr(char *s_nbr, t_stack **stack);
 void			ft_swap(t_stack **a, t_stack **b, int mode);
 void			ft_push(t_stack **a, t_stack **b, int mode);
+void			push_ext(t_stack_extended *a, t_stack_extended *b, int mode);
 void			ft_rotate(t_stack **a, t_stack **b, int mode);
 void			ft_reverse_rotate(t_stack **a, t_stack **b, int mode);
 void			print_stack(t_stack *node);

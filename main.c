@@ -46,10 +46,9 @@ void default_order(t_stack **stack_a, t_stack **stack_b){
 	a.s = stack_a;
 	b.s = stack_b;
 	longest_rally_orderer(&a, &b); //! handle malloc error
-	print_stack(*a.s);
-	// free(a.s);
-	// free(b.s);
-	// print_stack(*a.s);
+	print_stack(*b.s);
+	printf("a.len %ld\tb.len %ld\n\n",a.len, b.len);
+	// less_moves_to_order(&a, &b);
 }
 // = malloc(max_rally * sizeof(int));
 // typedef struct s_stack_extended

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 10:57:27 by emadriga          #+#    #+#             */
-/*   Updated: 2021/09/04 12:58:52 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/01 20:31:19 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_swap(t_stack **a, t_stack **b, int mode)
 }
 
 /**
- * * Take the first element at the top of source and put it at the top of 
+ * * Take the first element at the top of source and put it at the top of
  destination. Do nothing if source is empty.
 * @param dts	stack destination
 * @param src	stack source
@@ -81,5 +81,21 @@ void	ft_push(t_stack **a, t_stack **b, int mode)
 	{
 		write(1, "pb\n", 3);
 		push(b, a);
+	}
+}
+
+void	push_ext(t_stack_extended *a, t_stack_extended *b, int mode)
+{
+	if (mode == STACKA)
+	{
+		ft_push(a->s, b->s, STACKA);
+		a->len++;
+		b->len--;
+	}
+	else if (mode == STACKB)
+	{
+		ft_push(a->s, b->s, STACKB);
+		a->len--;
+		b->len++;
 	}
 }
