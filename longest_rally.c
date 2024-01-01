@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   longest_rally.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/01 20:32:12 by emadriga          #+#    #+#             */
+/*   Updated: 2024/01/01 20:32:13 by emadriga         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_stack *next_node(const t_stack *first, const t_stack *current)
@@ -103,8 +115,7 @@ void leave_rally(t_stack_extended *a, t_stack_extended *b, size_t *rally_items){
 		while (rally_items[i] != 0 && (*a->s)->order != (int)rally_items[i])
 			i++;
 		if (rally_items[i] == 0){
-			ft_push(a->s, b->s, STACKB);
-			a->len--;
+			push_ext(a, b, STACKB);
 		}
 		else
 			ft_rotate(a->s, b->s, STACKA);
