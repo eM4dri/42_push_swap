@@ -37,14 +37,14 @@ static size_t rally_ordered(const t_stack *first, const t_stack *current)
 	return rally;
 }
 
-size_t *get_rally_items(const t_stack *first, const t_stack *current, const int	max_rally){
+size_t *get_rally_items(const t_stack *first, const t_stack *current, const size_t	max_rally){
 	size_t	*rally_items;
 	int		i;
 	t_stack	*n;
 	int		pivot;
 
 	pivot = current->order;
-	rally_items = malloc(max_rally * sizeof(int));
+	rally_items = (size_t *) malloc((max_rally + 1) * sizeof(size_t));
 	if (rally_items == NULL)
 		return NULL;
 	i = 0;
@@ -93,19 +93,21 @@ size_t get_rally_length(size_t *rally_items){
 	return len;
 }
 
-void leave_rally(t_stack **a, t_stack **b, size_t *rally_items){
+void leave_rally(t_stack_extended *a, t_stack_extended *b, size_t *rally_items){
 	const size_t	len_rally = get_rally_length(rally_items);
 	int				i;
 
-	while (get_stack_len(*a) != (int)len_rally)
+	while (a->len != len_rally)
 	{
 		i = 0;
-		while (rally_items[i] != 0 && (*a)->order != (int)rally_items[i])
+		while (rally_items[i] != 0 && (*a->s)->order != (int)rally_items[i])
 			i++;
-		if (rally_items[i] == 0)
-			ft_push(a, b, STACKB);
+		if (rally_items[i] == 0){
+			ft_push(a->s, b->s, STACKB);
+			a->len--;
+		}
 		else
-			ft_rotate(a, b, STACKA);
+			ft_rotate(a->s, b->s, STACKA);
 	}
 }
 
@@ -114,35 +116,14 @@ void leave_rally(t_stack **a, t_stack **b, size_t *rally_items){
 * It isn't the longest raw, just a polished one
 * @param first first node of a stack
 */
-void longest_rally_orderer(t_stack **a, t_stack **b){
-	size_t		*rally_items;
-	// t_stack		*node;
+void longest_rally_orderer(t_stack_extended *a, t_stack_extended *b){
+	size_t	*rally_items;
 
-	rally_items = get_longest_rally_orderer(*a);
+	a->len = get_stack_len(*a->s);
+	b->len = 0;
+	rally_items = get_longest_rally_orderer(*a->s);
 	if (rally_items == NULL)
 		return ; //! ERROR
 	leave_rally(a, b, rally_items);
-	print_stack(*a);
-	printf("\n\n");
 	free(rally_items);
-	// t_stack	*current;
-	// size_t	rally;
-	// size_t	max_rally;
-	// t_stack	*max_rally_node;
-	// (void)b;
-
-	// max_rally = 0;
-	// current = *a;
-	// while (current != NULL)
-	// {
-	// 	rally = rally_ordered(*a, current);
-	// 	if (max_rally < rally){
-	// 		max_rally = rally;
-	// 		max_rally_node = current;
-	// 	}
-	// 	// printf("N %d\tR%ld\n", current->order, rally);
-	// 	current = current->next;
-	// }
-	// printf("%d is the longest rally with %ld\n", max_rally_node->order, max_rally);
-	// get_rally_items(*a, max_rally_node, (int)max_rally);
 }
