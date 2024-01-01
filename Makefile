@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+         #
+#    By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2021/09/04 19:19:09 by emadriga         ###   ########.fr        #
+#    Updated: 2024/01/01 20:30:23 by emadriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
