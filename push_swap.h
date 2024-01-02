@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 12:04:17 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/02 17:50:46 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/02 18:02:19 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_stack
 typedef struct s_stack_extended
 {
 	t_stack	**s;
-	size_t	len;
+	uint	len;
 }t_stack_extended;
 
 int		parse_nbr(char *s_nbr, t_stack **stack);
