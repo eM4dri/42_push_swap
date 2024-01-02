@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 12:04:34 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/02 15:02:06 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:34:28 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,3 @@ int	get_stack_len(t_stack *stack)
 	}
 	return (i);
 }
-
-

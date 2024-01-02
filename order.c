@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/29 18:14:54 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/02 14:58:48 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:33:48 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,3 @@ void	order5(t_stack **a, t_stack **b)
 			ft_swap(a, b, STACKA);
 	}
 }
-
