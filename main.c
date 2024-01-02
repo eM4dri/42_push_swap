@@ -6,22 +6,20 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 17:49:07 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/02 10:57:19 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:38:04 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void			print_stack(t_stack *node){
-
+void	print_stack(t_stack *node)
+{
 	while (node != NULL)
 	{
 		printf("%d ", node->order);
-		// printf("%d\t%d\t%d\n", node->pos, node->nbr, node->order);
 		node = node->next;
 	}
 	printf("\n");
-
 }
 
 static int	isordered(t_stack *stack)
@@ -39,26 +37,16 @@ static int	isordered(t_stack *stack)
 	return (1);
 }
 
-void default_order(t_stack **stack_a, t_stack **stack_b){
+void	default_order(t_stack **stack_a, t_stack **stack_b)
+{
 	t_stack_extended	a;
 	t_stack_extended	b;
 
 	a.s = stack_a;
 	b.s = stack_b;
-	longest_rally_orderer(&a, &b); //! handle malloc error
-	// print_stack(*b.s);
-	// print_stack(*a.s);
-
-	// printf("a.len %ld\tb.len %ld\n\n",a.len, b.len);
+	longest_rally_orderer(&a, &b);
 	less_moves_to_order(&a, &b);
-	// print_stack(*a.s);
 }
-// = malloc(max_rally * sizeof(int));
-// typedef struct s_stack_extended
-// {
-// 	t_stack	**s;
-// 	size_t	len;
-// }t_stack_extended;
 
 static void	do_rotate(t_stack **stack)
 {
