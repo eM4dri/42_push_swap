@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 17:49:07 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/02 16:38:04 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:58:44 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_stack(t_stack *node)
 
 static int	isordered(t_stack *stack)
 {
-	__u_int	i;
+	uint	i;
 
 	i = 1;
 	while (stack != NULL)
@@ -44,7 +44,7 @@ void	default_order(t_stack **stack_a, t_stack **stack_b)
 
 	a.s = stack_a;
 	b.s = stack_b;
-	longest_rally_orderer(&a, &b);
+	keep_longest_rally(&a, &b);
 	less_moves_to_order(&a, &b);
 }
 

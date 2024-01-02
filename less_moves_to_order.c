@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 20:29:58 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/02 15:12:05 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:58:44 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static void reset_node_moves(t_stack *node){
 	node->moves_mode = NONE;
 }
 
-static __u_int moves_to_prepare_a(__u_int order, const t_stack *a_first){
+static uint moves_to_prepare_a(uint order, const t_stack *a_first){
 	t_stack	*n;
-	__u_int	min;
-	__u_int	moves;
-	__u_int	moves_to_min;
+	uint	min;
+	uint	moves;
+	uint	moves_to_min;
 
 	n = (t_stack *)a_first;
 	moves = 1;
@@ -51,7 +51,7 @@ static __u_int moves_to_prepare_a(__u_int order, const t_stack *a_first){
 	return moves_to_min;
 }
 
-static __u_int greater_of(const __u_int x, const __u_int y)
+static uint greater_of(const uint x, const uint y)
 {
 	if (x > y)
 		return x;
@@ -60,10 +60,10 @@ static __u_int greater_of(const __u_int x, const __u_int y)
 
 static void set_node_total_moves(t_stack *n)
 {
-	const __u_int	m2fa_m2lb = n->m2fa + n->m2lb;
-	const __u_int	m2la_m2fb = n->m2la + n->m2fb;
-	const __u_int	m2fD = greater_of(n->m2fa, n->m2fb);
-	const __u_int	m2lD = greater_of(n->m2la, n->m2lb);
+	const uint	m2fa_m2lb = n->m2fa + n->m2lb;
+	const uint	m2la_m2fb = n->m2la + n->m2fb;
+	const uint	m2fD = greater_of(n->m2fa, n->m2fb);
+	const uint	m2lD = greater_of(n->m2la, n->m2lb);
 
 	if (m2fD <= m2lD && m2fD <= m2fa_m2lb && m2fD <= m2la_m2fb)
 		n->moves_mode = M2FD;
@@ -82,7 +82,7 @@ static void set_node_total_moves(t_stack *n)
 
 static void calculate_node_moves(t_stack_extended *a, t_stack_extended *b){
 	t_stack	*node;
-	__u_int	m2fb;
+	uint	m2fb;
 
 	node = *b->s;
 	m2fb = 0;
@@ -102,7 +102,7 @@ static void calculate_node_moves(t_stack_extended *a, t_stack_extended *b){
 static t_stack *less_moves_to_order_next(t_stack_extended *a, t_stack_extended *b){
 	t_stack	*node;
 	t_stack	*min_moves_node;
-	__u_int	min;
+	uint	min;
 
 	calculate_node_moves(a, b);
 	node = *b->s;
