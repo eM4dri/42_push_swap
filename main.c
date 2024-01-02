@@ -26,7 +26,7 @@ void			print_stack(t_stack *node){
 
 static int	isordered(t_stack *stack)
 {
-	int	i;
+	__u_int	i;
 
 	i = 1;
 	while (stack != NULL)
@@ -46,12 +46,12 @@ void default_order(t_stack **stack_a, t_stack **stack_b){
 	a.s = stack_a;
 	b.s = stack_b;
 	longest_rally_orderer(&a, &b); //! handle malloc error
-	// print_stack(*a.s);
 	// print_stack(*b.s);
+	// print_stack(*a.s);
 
 	// printf("a.len %ld\tb.len %ld\n\n",a.len, b.len);
 	less_moves_to_order(&a, &b);
-	print_stack(*a.s);
+	// print_stack(*a.s);
 }
 // = malloc(max_rally * sizeof(int));
 // typedef struct s_stack_extended
@@ -91,7 +91,7 @@ int	main(int argc, char **argv)
 	{
 		if (!parse_nbr(argv[i], &stacka))
 		{
-			write(1, "Error\n", 7);
+			write(2, "Error\n", 7);
 			error = EINVAL;
 			break ;
 		}
