@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 12:04:17 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/02 17:01:20 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/02 17:50:46 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,6 @@ typedef struct s_stack_extended
 	t_stack	**s;
 	size_t	len;
 }t_stack_extended;
-typedef struct s_chunk_item
-{
-	int	nbr;
-	int	pos;
-}t_chunk_item;
-typedef struct s_stack_chunk_stats
-{
-	int	min;
-	int	max;
-	int	first;
-	int	second;
-	int	last;
-}t_stack_stats;
-typedef struct s_chunk
-{
-	t_chunk_item	item;
-	t_chunk_sizes	sizes;
-}t_chunk;
 
 int		parse_nbr(char *s_nbr, t_stack **stack);
 void	ft_swap(t_stack **a, t_stack **b, int mode);
@@ -95,4 +77,6 @@ void	keep_longest_rally(t_stack_extended *a, t_stack_extended *b);
 void	less_moves_to_order(t_stack_extended *a, t_stack_extended *b);
 void	move_node_to_a(t_stack **a, t_stack **b, t_stack *n);
 uint	*get_longest_rally(const t_stack *first);
+void	calculate_node_moves(t_stack_extended *a, t_stack_extended *b);
+uint	greater_of(const uint x, const uint y);
 #endif
