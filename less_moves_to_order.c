@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 20:29:58 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/02 10:49:40 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/02 15:12:05 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void reset_node_moves(t_stack *node){
 	node->moves_mode = NONE;
 }
 
-static __u_int moves_to_prepare_a(int order, const t_stack *a_first){
+static __u_int moves_to_prepare_a(__u_int order, const t_stack *a_first){
 	t_stack	*n;
-	int 	min;
+	__u_int	min;
 	__u_int	moves;
 	__u_int	moves_to_min;
 
@@ -41,6 +41,10 @@ static __u_int moves_to_prepare_a(int order, const t_stack *a_first){
 			return moves;
 		n = n->next;
 		moves++;
+	}
+	if (min > n->order){
+		min = n->order;
+		moves_to_min = moves - 1;
 	}
 	if (n->order < order && order < a_first->order)
 		return 0;
@@ -110,7 +114,9 @@ static t_stack *less_moves_to_order_next(t_stack_extended *a, t_stack_extended *
 		{
 			min = node->total_moves;
 			min_moves_node = node;
-		}
+		} 
+		else if (min == node->total_moves && min_moves_node->order > node->order)
+			min_moves_node = node;
 		node = node->next;
 	}
 	return min_moves_node;
@@ -118,12 +124,32 @@ static t_stack *less_moves_to_order_next(t_stack_extended *a, t_stack_extended *
 
 void less_moves_to_order(t_stack_extended *a, t_stack_extended *b){
 	t_stack	*node;
+	int		m2fa;
+	int		m2la;
 
 	while (b->len != 0)
 	{
 		node = less_moves_to_order_next(a, b);
 		move_node_to_a(a->s, b->s, node);
 		push_ext(a, b, STACKA);
+	}
+	node = *a->s;
+	m2fa = 0;
+	while (node->order != 1)
+	{
+		node = node->next;
+		m2fa++;
+	}
+	m2la = a->len - m2fa;
+	if (m2fa < m2la)
+	{
+		while (m2fa--)
+			ft_rotate(a->s, b->s, STACKA);
+	}
+	else
+	{
+		while (m2la--)
+			ft_reverse_rotate(a->s, b->s, STACKA);
 	}
 }
 
