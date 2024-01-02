@@ -1,2 +1,4 @@
 *.o
 push_swap
+checker
+libft.a

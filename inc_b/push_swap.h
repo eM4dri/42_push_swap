@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 12:04:17 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/02 19:43:42 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/02 20:55:14 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <errno.h>
 # include <stdio.h>
 # include <sys/types.h>
+# include "libft.h"
 # define MAX_INT 2147483647
 
 enum e_move_stack{
@@ -71,8 +72,10 @@ void	push_ext(t_stack_extended *a, t_stack_extended *b, int mode);
 void	ft_rotate(t_stack **a, t_stack **b, int mode);
 void	ft_reverse_rotate(t_stack **a, t_stack **b, int mode);
 void	print_stack(t_stack *node);
-int		ft_isspace(char c);
-int		ft_isdigit(int c);
-int		ft_atoi(const char *str);
+
+void	swap(t_stack **stack);
+void	push(t_stack **dts, t_stack **src);
+void	reverse_rotate(t_stack **stack);
+void	rotate(t_stack **stack);
 
 #endif

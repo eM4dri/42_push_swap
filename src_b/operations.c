@@ -1,57 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations2.c                                      :+:      :+:    :+:   */
+/*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 10:57:27 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/02 16:35:13 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/02 20:41:15 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /**
- * rotate
- * * Shift up all elements of stack a by 1. The first element becomes
-the last one.
+ * * Swap the first 2 elements at the top of stack. Do nothing if there
+is only one or no elements).
 * @param stack		stack
 */
-static void	rotate(t_stack **stack)
+void	swap(t_stack **stack)
 {
 	t_stack	*first;
-	t_stack	*aux;
+	t_stack	*second;
 
 	if (*stack != NULL)
 	{
 		first = *stack;
 		if (first->next != NULL)
 		{
-			aux = *stack;
-			*stack = aux->next;
-			while (aux->next != NULL)
-			{
-				aux = aux->next;
-			}
-			first->next = NULL;
-			aux->next = first;
+			second = first->next;
+			first->next = second->next;
+			second->next = first;
+			*stack = second;
 		}
 	}
 }
 
-void	ft_rotate(t_stack **a, t_stack **b, int mode)
+/**
+ * * Take the first element at the top of source and put it at the top of
+ destination. Do nothing if source is empty.
+* @param dts	stack destination
+* @param src	stack source
+*/
+void	push(t_stack **dts, t_stack **src)
 {
-	if (mode == STACKA)
-		write(1, "ra\n", 3);
-	else if (mode == STACKB)
-		write(1, "rb\n", 3);
-	else if (mode == BOTHSTACKS)
-		write(1, "rr\n", 3);
-	if (mode == STACKA || mode == BOTHSTACKS)
-		rotate(a);
-	if (mode == STACKB || mode == BOTHSTACKS)
-		rotate(b);
+	t_stack	*src_1st_old;
+	t_stack	*dts_1st_old;
+
+	if (*src != NULL)
+	{
+		src_1st_old = *src;
+		dts_1st_old = *dts;
+		*src = src_1st_old->next;
+		src_1st_old->next = dts_1st_old;
+		*dts = src_1st_old;
+	}
 }
 
 /**
@@ -60,7 +62,7 @@ void	ft_rotate(t_stack **a, t_stack **b, int mode)
 becomes the first one
 * @param stack		stack
 */
-static void	reverse_rotate(t_stack **stack)
+void	reverse_rotate(t_stack **stack)
 {
 	t_stack	*first;
 	t_stack	*old_last;
@@ -85,16 +87,30 @@ static void	reverse_rotate(t_stack **stack)
 	}
 }
 
-void	ft_reverse_rotate(t_stack **a, t_stack **b, int mode)
+/**
+ * rotate
+ * * Shift up all elements of stack a by 1. The first element becomes
+the last one.
+* @param stack		stack
+*/
+void	rotate(t_stack **stack)
 {
-	if (mode == STACKA)
-		write(1, "rra\n", 4);
-	else if (mode == STACKB)
-		write(1, "rrb\n", 4);
-	else if (mode == BOTHSTACKS)
-		write(1, "rrr\n", 4);
-	if (mode == STACKA || mode == BOTHSTACKS)
-		reverse_rotate(a);
-	if (mode == STACKB || mode == BOTHSTACKS)
-		reverse_rotate(b);
+	t_stack	*first;
+	t_stack	*aux;
+
+	if (*stack != NULL)
+	{
+		first = *stack;
+		if (first->next != NULL)
+		{
+			aux = *stack;
+			*stack = aux->next;
+			while (aux->next != NULL)
+			{
+				aux = aux->next;
+			}
+			first->next = NULL;
+			aux->next = first;
+		}
+	}
 }

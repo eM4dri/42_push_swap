@@ -6,7 +6,7 @@
 #    By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2024/01/02 19:26:05 by emadriga         ###   ########.fr        #
+#    Updated: 2024/01/02 20:40:12 by emadriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,23 +47,31 @@ OBJ_FILES	= $(SRC_FILES:.c=.o)
 SRC_DIR = ./src/
 OBJ_DIR = ./obj/
 INC_DIR = ./inc/
+LIBFT_DIR = ./libft/
 
 # Paths
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 INCLUDES = $(addprefix $(INC_DIR), $(INCLUDES_FILES))
+LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
+
+# Libft linkers
+LNK  = -L $(LIBFT_DIR) -lft $(SANITIZE)
 
 # all rule
-all: obj $(NAME)
+all: obj $(LIBFT) $(NAME)
 
 obj:
 	mkdir -p $(OBJ_DIR)
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c $(INCLUDES)
-	$(CC) $(FLAGS) -I $(INC_DIR) -o $@ -c $<
+	$(CC) $(FLAGS) -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
+	
+$(LIBFT):
+	@make -C $(LIBFT_DIR)
 	
 # Compiling
 $(NAME):	$(OBJ)
-			$(CC) $(FLAGS) -o $(NAME) $(OBJ)
+			$(CC) $(FLAGS) $(LNK) -o $(NAME) $(OBJ)
 
 # BONUS
 # Program's name
@@ -74,8 +82,7 @@ INCLUDES_FILES_B =	push_swap.h
 
 # Source and object files
 SRC_FILES_B		= main.c				\
-				operations1.c			\
-				operations2.c			\
+				operations.c			\
 				parser.c				\
 				parserutils.c
 
@@ -92,28 +99,29 @@ OBJ_B = $(addprefix $(OBJ_DIR_B), $(OBJ_FILES_B))
 INCLUDES_B = $(addprefix $(INC_DIR_B), $(INCLUDES_FILES_B))
 
 # bonus rule
-bonus: obj_b $(NAME_B)
+bonus: obj_b $(LIBFT) $(NAME_B)
 
 obj_b:
 	mkdir -p $(OBJ_DIR_B)
 $(OBJ_DIR_B)%.o:$(SRC_DIR_B)%.c $(INCLUDES_B)
-	$(CC) $(FLAGS) -I $(INC_DIR_B) -o $@ -c $<
+	$(CC) $(FLAGS) -I $(LIBFT_DIR) -I $(INC_DIR_B) -o $@ -c $<
 	
 # Compiling
 $(NAME_B):	$(OBJ_B)
-			$(CC) $(FLAGS) -o $(NAME_B) $(OBJ_B)
+			$(CC) $(FLAGS) $(LNK) -o $(NAME_B) $(OBJ_B)
 
 clean:
 		$(RM) -Rf $(OBJ_DIR)
 		$(RM) -Rf $(OBJ_DIR_B)
+		make -C $(LIBFT_DIR) clean
 
 fclean:	clean
 		$(RM) $(NAME)
-		$(RM) $(NAME_B) 
-
+		$(RM) $(NAME_B)
+		make -C $(LIBFT_DIR) fclean
 
 re:		fclean all
 
-.SILENT: all ${NAME} ${OBJS} clean fclean re bonus
+.SILENT: all ${NAME} ${OBJ} clean fclean re bonus ${LIBFT} ${NAME_B} ${OBJ_B}
 
 .PHONY:	all clean fclean re bonus
