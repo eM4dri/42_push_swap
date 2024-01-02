@@ -64,7 +64,7 @@ int	main(int argc, char **argv)
 	{
 		if (!parse_nbr(argv[i], &stacka))
 		{
-			write(1, "Error\n", 7);
+			write(2, "Error\n", 7);
 			exit(1);
 		}
 	}
