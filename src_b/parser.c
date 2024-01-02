@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emadriga <emadriga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 12:04:08 by emadriga          #+#    #+#             */
-/*   Updated: 2021/09/04 16:25:52 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/02 19:44:54 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	exists(int nbr, t_stack *stack)
 			return (1);
 		stack = stack->next;
 	}
-	return (0);
+	return (KO);
 }
 
 /**
@@ -46,7 +46,7 @@ static int	valid_range_int(const char *s_nbr)
 		s_nbr++;
 	}
 	if (l > MAX_INT + is_signed)
-		return (0);
+		return (KO);
 	return (1);
 }
 
@@ -62,13 +62,13 @@ static int	check_nbr(char *const_s_nbr)
 	s_nbr = (char *)const_s_nbr;
 	if (!(ft_isdigit(s_nbr[0])) && \
 	!(ft_isdigit(s_nbr[1]) && (s_nbr[0] == '-' || s_nbr[0] == '+')))
-		return (0);
+		return (KO);
 	if (*s_nbr == '-' || *s_nbr == '+')
 		s_nbr++;
 	while (*s_nbr != '\0' && !ft_isspace(*s_nbr))
 	{
 		if (!ft_isdigit(*s_nbr))
-			return (0);
+			return (KO);
 		s_nbr++;
 	}
 	return (s_nbr - const_s_nbr);
@@ -122,17 +122,17 @@ int	parse_nbr(char *s_nbr, t_stack **stack)
 		s_nbr++;
 	read = check_nbr(s_nbr);
 	if (!read)
-		return (0);
+		return (KO);
 	if (!valid_range_int(s_nbr))
-		return (0);
+		return (KO);
 	nbr = ft_atoi(s_nbr);
 	if (exists(nbr, *stack))
-		return (0);
+		return (KO);
 	ft_lstadd_back_nbr(stack, nbr);
 	s_nbr += read;
 	while (ft_isspace(*s_nbr))
 		s_nbr++;
 	if (*s_nbr != '\0')
 		return (parse_nbr(s_nbr, stack));
-	return (1);
+	return (OK);
 }

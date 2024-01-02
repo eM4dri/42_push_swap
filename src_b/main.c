@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 17:49:07 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/02 19:33:00 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/02 19:48:16 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,18 @@ static int	isordered(t_stack *stack)
 	return (1);
 }
 
+static  int	read_moves(t_stack **a)
+{
+	(void)a;
+	// while (get_next_line (0, &move))
+	// {
+	// 	if (! check_moves (move))
+	// 		return KO;
+	// 	do_move (move, st);
+	// }
+	return OK;
+}
+
 int	main(int argc, char **argv)
 {
 	int		i;
@@ -61,12 +73,17 @@ int	main(int argc, char **argv)
 	stacka = NULL;
 	while (++i < argc)
 	{
-		if (!parse_nbr(argv[i], &stacka))
+		if (parse_nbr(argv[i], &stacka) == KO)
 		{
 			write(2, "Error\n", 7);
 			error = EINVAL;
 			break ;
 		}
+	}
+	if (read_moves(&stacka) == KO)
+	{
+		write(2, "Error\n", 7);
+		error = EINVAL;
 	}
 	if (!error)
 	{

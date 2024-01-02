@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 12:04:17 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/02 19:27:10 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/02 19:43:42 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ enum e_moves_mode{
 	M2LD,
 	M2FA_M2LB,
 	M2LA_M2FB
+};
+
+enum e_error{
+	KO,
+	OK
 };
 
 typedef struct s_chunk_size
