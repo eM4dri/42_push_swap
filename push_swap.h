@@ -17,9 +17,13 @@
 # include	<errno.h>
 # include	<stdio.h>
 # define MAX_INT 2147483647
-# define STACKA 1
-# define STACKB 2
-# define BOTHSTACKS 3
+# define __u_int unsigned int
+
+enum e_move_stack{
+	STACKA,
+	STACKB,
+	BOTHSTACKS
+};
 
 enum e_moves_mode{
 	NONE,
@@ -39,8 +43,8 @@ typedef struct s_chunk_size
 typedef struct s_stack
 {
 	int				nbr;
-	int				order;
-	int				pos;
+	__u_int			pos;
+	__u_int			order;
 	__u_int			m2fa;
 	__u_int			m2la;
 	__u_int			m2fb;
@@ -83,14 +87,7 @@ void			print_stack(t_stack *node);
 void			ft_freestack(t_stack **stack);
 int				get_stack_len(t_stack *stack);
 void			order3(t_stack **stack, int mode);
-void			reverseorder3(t_stack **stack, int mode);
 void			order5(t_stack **a, t_stack **b);
-void			order_with_chunks(t_stack **a, t_stack **b, int tot_chunks);
-void			push_src_to_dts(t_stack **src, t_stack **dts);
-t_chunk_item	get_chunk_next_item(t_stack *stack, int max, int stack_len);
-void			prepare_pushb(t_stack **a, t_stack **b, t_chunk *chunk);
-void			ft_append(char **dts, char *src);
-void			orderbydefault(t_stack **a, t_stack **b);
 int				ft_isspace(char c);
 int				ft_isdigit(int c);
 int				ft_atoi(const char *str);

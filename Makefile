@@ -14,8 +14,6 @@ SRC		= main.c		\
 		operations1.c	\
 		operations2.c	\
 		order.c			\
-		orderchunks.c	\
-		orderchunks2.c	\
 		parser.c		\
 		parserutils.c	\
 		longest_rally.c	\
