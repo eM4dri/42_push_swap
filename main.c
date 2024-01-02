@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 17:49:07 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/01 23:11:53 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/02 10:57:19 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,12 @@ void default_order(t_stack **stack_a, t_stack **stack_b){
 	a.s = stack_a;
 	b.s = stack_b;
 	longest_rally_orderer(&a, &b); //! handle malloc error
-	print_stack(*b.s);
+	// print_stack(*a.s);
+	// print_stack(*b.s);
+
 	// printf("a.len %ld\tb.len %ld\n\n",a.len, b.len);
 	less_moves_to_order(&a, &b);
+	print_stack(*a.s);
 }
 // = malloc(max_rally * sizeof(int));
 // typedef struct s_stack_extended

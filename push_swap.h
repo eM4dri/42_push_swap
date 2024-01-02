@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 12:04:17 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/01 22:34:47 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/02 10:54:49 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@
 # define STACKA 1
 # define STACKB 2
 # define BOTHSTACKS 3
+
+enum e_moves_mode{
+	NONE,
+	M2FD,
+	M2LD,
+	M2FA_M2LB,
+	M2LA_M2FB
+};
 
 typedef struct s_chunk_size
 {
@@ -88,5 +96,5 @@ int				ft_isdigit(int c);
 int				ft_atoi(const char *str);
 void			longest_rally_orderer(t_stack_extended *a, t_stack_extended *b);
 void			less_moves_to_order(t_stack_extended *a, t_stack_extended *b);
-
+void			move_node_to_a(t_stack **a, t_stack **b, t_stack *n);
 #endif
