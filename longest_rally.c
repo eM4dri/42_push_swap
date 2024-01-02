@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 20:32:12 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/01 20:32:13 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/02 15:08:05 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ t_stack *next_node(const t_stack *first, const t_stack *current)
 * @param first first node of a stack
 * @param current current node of a stack
 */
-static size_t rally_ordered(const t_stack *first, const t_stack *current)
+static __u_int rally_ordered(const t_stack *first, const t_stack *current)
 {
 	t_stack	*n;
-	size_t	rally;
-	int		pivot;
+	__u_int	rally;
+	__u_int	pivot;
 
 	rally = 0;
 	pivot = current->order;
@@ -49,14 +49,14 @@ static size_t rally_ordered(const t_stack *first, const t_stack *current)
 	return rally;
 }
 
-size_t *get_rally_items(const t_stack *first, const t_stack *current, const size_t	max_rally){
-	size_t	*rally_items;
+__u_int *get_rally_items(const t_stack *first, const t_stack *current, const __u_int	max_rally){
+	__u_int	*rally_items;
 	int		i;
 	t_stack	*n;
-	int		pivot;
+	__u_int	pivot;
 
 	pivot = current->order;
-	rally_items = (size_t *) malloc((max_rally + 1) * sizeof(size_t));
+	rally_items = (__u_int *) malloc((max_rally + 1) * sizeof(__u_int));
 	if (rally_items == NULL)
 		return NULL;
 	i = 0;
@@ -75,10 +75,10 @@ size_t *get_rally_items(const t_stack *first, const t_stack *current, const size
 	return rally_items;
 }
 
-size_t *get_longest_rally_orderer(const t_stack *first){
+__u_int *get_longest_rally_orderer(const t_stack *first){
 	t_stack	*current;
-	size_t	rally;
-	size_t	max_rally;
+	__u_int	rally;
+	__u_int	max_rally;
 	t_stack	*max_rally_node;
 
 	max_rally = 0;
@@ -92,12 +92,11 @@ size_t *get_longest_rally_orderer(const t_stack *first){
 		}
 		current = current->next;
 	}
-	// printf("%d is the longest rally with %ld\n", max_rally_node->order, max_rally);
 	return get_rally_items(first, max_rally_node, max_rally + 1);
 }
 
-size_t get_rally_length(size_t *rally_items){
-	size_t	len;
+__u_int get_rally_length(__u_int *rally_items){
+	__u_int	len;
 
 	len = 0;
 	while (rally_items[len] != 0)
@@ -105,14 +104,14 @@ size_t get_rally_length(size_t *rally_items){
 	return len;
 }
 
-void leave_rally(t_stack_extended *a, t_stack_extended *b, size_t *rally_items){
-	const size_t	len_rally = get_rally_length(rally_items);
+void leave_rally(t_stack_extended *a, t_stack_extended *b, __u_int *rally_items){
+	const __u_int	len_rally = get_rally_length(rally_items);
 	int				i;
 
 	while (a->len != len_rally)
 	{
 		i = 0;
-		while (rally_items[i] != 0 && (*a->s)->order != (int)rally_items[i])
+		while (rally_items[i] != 0 && (*a->s)->order != rally_items[i])
 			i++;
 		if (rally_items[i] == 0){
 			push_ext(a, b, STACKB);
@@ -128,7 +127,7 @@ void leave_rally(t_stack_extended *a, t_stack_extended *b, size_t *rally_items){
 * @param first first node of a stack
 */
 void longest_rally_orderer(t_stack_extended *a, t_stack_extended *b){
-	size_t	*rally_items;
+	__u_int	*rally_items;
 
 	a->len = get_stack_len(*a->s);
 	b->len = 0;
