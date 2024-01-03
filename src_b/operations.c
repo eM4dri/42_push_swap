@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 10:57:27 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/02 20:41:15 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:06:30 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 is only one or no elements).
 * @param stack		stack
 */
-void	swap(t_stack **stack)
+static void	swap(t_stack **stack)
 {
 	t_stack	*first;
 	t_stack	*second;
@@ -41,7 +41,7 @@ void	swap(t_stack **stack)
 * @param dts	stack destination
 * @param src	stack source
 */
-void	push(t_stack **dts, t_stack **src)
+static void	push(t_stack **dts, t_stack **src)
 {
 	t_stack	*src_1st_old;
 	t_stack	*dts_1st_old;
@@ -62,7 +62,7 @@ void	push(t_stack **dts, t_stack **src)
 becomes the first one
 * @param stack		stack
 */
-void	reverse_rotate(t_stack **stack)
+static void	reverse_rotate(t_stack **stack)
 {
 	t_stack	*first;
 	t_stack	*old_last;
@@ -93,7 +93,7 @@ void	reverse_rotate(t_stack **stack)
 the last one.
 * @param stack		stack
 */
-void	rotate(t_stack **stack)
+static void	rotate(t_stack **stack)
 {
 	t_stack	*first;
 	t_stack	*aux;
@@ -112,5 +112,31 @@ void	rotate(t_stack **stack)
 			first->next = NULL;
 			aux->next = first;
 		}
+	}
+}
+
+void	ft_move(int move, t_stack **a, t_stack **b)
+{
+	if (move == PA)
+		push(a, b);
+	else if (move == PB)
+		push(b, a);
+	else if (move == SA)
+		swap(a);
+	else if (move == SB)
+		swap(b);
+	else if (move == RA || move == RB || move == RR)
+	{
+		if (move == RA || move == RR)
+			rotate(a);
+		if (move == RB || move == RR)
+			rotate(b);
+	}
+	else
+	{
+		if (move == RRA || move == RRR)
+			reverse_rotate(a);
+		if (move == RRB || move == RRR)
+			reverse_rotate(b);
 	}
 }

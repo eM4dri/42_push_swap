@@ -6,7 +6,7 @@
 #    By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2024/01/02 20:40:12 by emadriga         ###   ########.fr        #
+#    Updated: 2024/01/03 16:09:02 by emadriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,8 +83,7 @@ INCLUDES_FILES_B =	push_swap.h
 # Source and object files
 SRC_FILES_B		= main.c				\
 				operations.c			\
-				parser.c				\
-				parserutils.c
+				parser.c
 
 OBJ_FILES_B	= $(SRC_FILES_B:.c=.o)
 
