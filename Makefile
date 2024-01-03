@@ -6,7 +6,7 @@
 #    By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2024/01/03 16:20:55 by emadriga         ###   ########.fr        #
+#    Updated: 2024/01/03 16:25:38 by emadriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ SRC_FILES		= main.c				\
 				operations2.c			\
 				order.c					\
 				parser.c				\
-				parserutils.c			\
 				get_longest_rally.c		\
 				keep_longest_rally.c	\
 				less_moves_to_order.c	\

@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 17:49:07 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/02 16:58:44 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:28:52 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ void	print_stack(t_stack *node)
 {
 	while (node != NULL)
 	{
-		printf("%d ", node->order);
+		ft_putnbr_fd(1, node->order);
+		write(1, " ", 1);
 		node = node->next;
 	}
-	printf("\n");
+	write(1, "\n", 1);
 }
 
 static int	isordered(t_stack *stack)

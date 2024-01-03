@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 12:04:17 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/02 19:02:45 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:26:16 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <errno.h>
-# include <stdio.h>
 # include <sys/types.h>
+# include "libft.h"
 # define MAX_INT 2147483647
 
 enum e_move_stack{
@@ -70,9 +70,6 @@ void	ft_freestack(t_stack **stack);
 int		get_stack_len(t_stack *stack);
 void	order3(t_stack **stack, int mode);
 void	order5(t_stack **a, t_stack **b);
-int		ft_isspace(char c);
-int		ft_isdigit(int c);
-int		ft_atoi(const char *str);
 void	keep_longest_rally(t_stack_extended *a, t_stack_extended *b);
 void	less_moves_to_order(t_stack_extended *a, t_stack_extended *b);
 void	move_node_to_a(t_stack **a, t_stack **b, t_stack *n);
