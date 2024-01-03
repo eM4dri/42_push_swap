@@ -6,7 +6,7 @@
 #    By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2024/01/03 16:09:02 by emadriga         ###   ########.fr        #
+#    Updated: 2024/01/03 16:20:55 by emadriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,9 +88,9 @@ SRC_FILES_B		= main.c				\
 OBJ_FILES_B	= $(SRC_FILES_B:.c=.o)
 
 # Folders
-SRC_DIR_B = ./src_b/
-OBJ_DIR_B = ./obj_b/
-INC_DIR_B = ./inc_b/
+SRC_DIR_B = ./src/bonus/
+OBJ_DIR_B = ./obj/bonus/
+INC_DIR_B = ./inc/bonus/
 
 # Paths
 SRC_B = $(addprefix $(SRC_DIR_B), $(SRC_FILES_B))
