@@ -6,7 +6,7 @@
 /*   By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/04 17:49:07 by emadriga          #+#    #+#             */
-/*   Updated: 2024/01/03 16:22:42 by emadriga         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:24:30 by emadriga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,28 @@ static int	check_moves(const char *move)
 
 static int	read_moves(t_stack **a)
 {
-	int		error;
 	char	*move;
 	int		move_to;
 	t_stack	*aux;
 
-	error = NO_ERROR;
 	aux = NULL;
-	while (get_next_line (0, &move))
+	while (get_next_line(0, &move))
 	{
 		move_to = check_moves(move);
 		if (move_to == UKNOWN)
-			error = EINVAL;
+			return (EINVAL);
 		ft_move(move_to, a, &aux);
 		free(move);
-		if (error != NO_ERROR)
-			break ;
 	}
-	return (error);
+	if (move[0] != '\0')
+	{
+		move_to = check_moves(move);
+		if (move_to == UKNOWN)
+			return (EINVAL);
+		ft_move(move_to, a, &aux);
+	}
+	free(move);
+	return (NO_ERROR);
 }
 
 int	main(int argc, char **argv)
