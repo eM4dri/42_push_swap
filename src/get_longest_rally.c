@@ -24,7 +24,7 @@ static t_stack	*next_node(const t_stack *first, const t_stack *current)
 * * Get longest rally of numbers ordered starting on current node of the stack
 * Using 1st pivot we eval if next node is bigger populate our counter
 * With 2nd pivot we can adjust longest unnecesary jumps
-* It's not perfect solution since a brute force could find better results than 
+* It's not perfect solution since a brute force could find better results than
 * this 2 pivots solutions
 * @param first first node of a stack
 * @param current current node of a stack
@@ -90,6 +90,7 @@ uint	*get_longest_rally(const t_stack *first)
 
 	max_rally = 0;
 	current = (t_stack *)first;
+	max_rally_node = current;
 	while (current != NULL)
 	{
 		rally = rally_ordered(first, current);

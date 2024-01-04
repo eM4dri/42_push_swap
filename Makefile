@@ -6,14 +6,14 @@
 #    By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 19:44:26 by emadriga          #+#    #+#              #
-#    Updated: 2024/01/03 16:25:38 by emadriga         ###   ########.fr        #
+#    Updated: 2024/01/04 23:08:23 by emadriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Program's name
 NAME	= push_swap
 
-CC 		= gcc
+CC 		= clang
 RM 		= rm -f
 
 # compiling flags
@@ -64,13 +64,13 @@ obj:
 	mkdir -p $(OBJ_DIR)
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c $(INCLUDES)
 	$(CC) $(FLAGS) -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
-	
+
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
-	
+
 # Compiling
 $(NAME):	$(OBJ)
-			$(CC) $(FLAGS) $(LNK) -o $(NAME) $(OBJ)
+			$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LNK)
 
 # BONUS
 # Program's name
@@ -94,19 +94,18 @@ INC_DIR_B = ./inc/bonus/
 # Paths
 SRC_B = $(addprefix $(SRC_DIR_B), $(SRC_FILES_B))
 OBJ_B = $(addprefix $(OBJ_DIR_B), $(OBJ_FILES_B))
-INCLUDES_B = $(addprefix $(INC_DIR_B), $(INCLUDES_FILES_B))
 
 # bonus rule
 bonus: obj_b $(LIBFT) $(NAME_B)
 
 obj_b:
 	mkdir -p $(OBJ_DIR_B)
-$(OBJ_DIR_B)%.o:$(SRC_DIR_B)%.c $(INCLUDES_B)
-	$(CC) $(FLAGS) -I $(LIBFT_DIR) -I $(INC_DIR_B) -o $@ -c $<
-	
+$(OBJ_DIR_B)%.o:$(SRC_DIR_B)%.c $(INCLUDES)
+	$(CC) $(FLAGS) -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
+
 # Compiling
 $(NAME_B):	$(OBJ_B)
-			$(CC) $(FLAGS) $(LNK) -o $(NAME_B) $(OBJ_B)
+			$(CC) $(FLAGS) -o $(NAME_B) $(OBJ_B) $(LNK)
 
 clean:
 		$(RM) -Rf $(OBJ_DIR)

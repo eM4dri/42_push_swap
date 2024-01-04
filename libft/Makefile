@@ -6,7 +6,7 @@
 #    By: emadriga <emadriga@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/25 19:15:33 by emadriga          #+#    #+#              #
-#    Updated: 2024/01/02 20:18:27 by emadriga         ###   ########.fr        #
+#    Updated: 2024/01/04 23:08:16 by emadriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ SRC	=	ft_atoi.c			ft_bzero.c			ft_calloc.c			ft_isalnum.c		\
 # Name of the Library
 NAME	= libft.a
 
+CC	=	clang
+
 # Compiling flags
 FLAGS	= -Wall -Wextra -Werror
 
@@ -35,7 +37,7 @@ OBJS	= $(SRC:.c=.o)
 
 # Compile last modifications
 .c.o:
-			gcc $(FLAGS) -c -o $@ $<
+			$(CC) $(FLAGS) -c -o $@ $<
 
 # all rule
 all:		$(NAME)
@@ -58,7 +60,7 @@ fclean:		clean
 # re rule
 re:			fclean all
 
-.SILENT: all ${NAME} ${OBJS} clean fclean re 
+.SILENT: all ${NAME} ${OBJS} clean fclean re
 
 # phony
 .PHONY:		all clean fclean re
